@@ -1,0 +1,251 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "6b377018",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import matplotlib.pyplot as plt\n",
+    "import numpy as np\n",
+    "\n",
+    "def plot_ticks(): #essa é uma função que mexe na aparência dos gráficos\n",
+    "    plt.figure(figsize = (8,5))\n",
+    "    plt.minorticks_on()\n",
+    "    plt.tick_params(axis='x', which='both', top = True, right = True, direction = 'in', length=5, width=1)\n",
+    "    plt.tick_params(axis='y', which='both', top = True, right = True, direction = 'in', length=5, width=1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "734c4d36",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "%load_ext version_information\n",
+    "%version_information Matplotlib, Numpy"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "e2e5b7db",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "% notebook matplotlib.pyplot"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "7fe05d59",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "%% notebook matplotlib.pyplot"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "23eb9900",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import matplotlib.pyplot as plt\n",
+    "%%notebook matplotlib"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "a45344f6",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import matplotlib.pyplot as plt\n",
+    "%notebook matplotlib"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "f71a4914",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "plt.figure()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "id": "33fbbfd9",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import matplotlib.pyplot as plt\n",
+    "import numpy as np\n",
+    "%notebook matplotlib"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "id": "8aa5c639",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "x = np.linspace(0, 10, 1)\n",
+    "y = np.sin(x)\n",
+    "plt.figure(figsize=(5,3))\n",
+    "plt.plot(x, y)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "id": "174cb31e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "x = np.linspace(0, 10, 100)\n",
+    "y = np.sin(x)\n",
+    "plt.figure(figsize=(5,3))\n",
+    "plt.plot(x, y)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "id": "17656dc4",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "x = np.linspace(0, 10, 100)\n",
+    "y = np.sin(x)\n",
+    "plt.figure(figsize=(5,3))\n",
+    "plt.plot(x, y)\n",
+    "%notebook matplotlib"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "88a21f18",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import matplotlib.pyplot as plt\n",
+    "import numpy as np\n",
+    "%matplotlib notebook "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "id": "218d6e71",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "x = np.linspace(0, 10, 100)\n",
+    "y = np.sin(x)\n",
+    "plt.figure(figsize=(5,3))\n",
+    "plt.plot(x, y)\n",
+    "%notebook matplotlib"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "id": "daf69a7c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "x = np.linspace(0, 10, 100)\n",
+    "y = np.sin(x)\n",
+    "plt.figure(figsize=(5,3))\n",
+    "plt.plot(x, y)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "id": "1feb183e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import matplotlib.pyplot as plt\n",
+    "import numpy as np\n",
+    "%matplotlib notebook "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "id": "f91b9554",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import matplotlib.pyplot as plt\n",
+    "import numpy as np\n",
+    "%matplotlib notebook %"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "id": "bc963de7",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import matplotlib.pyplot as plt\n",
+    "import numpy as np\n",
+    "% matplotlib notebook %"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "id": "e3a0f0b3",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import matplotlib.pyplot as plt\n",
+    "import numpy as np\n",
+    "% matplotlib notebook"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "id": "3879f1f0",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import matplotlib.pyplot as plt\n",
+    "import numpy as np\n",
+    "%matplotlib notebook"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "id": "35cd054f",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "x = np.linspace(0, 10, 100)\n",
+    "y = np.sin(x)\n",
+    "plt.figure(figsize=(5,3))\n",
+    "plt.plot(x, y)"
+   ]
+  }
+ ],
+ "metadata": {},
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
