@@ -91,9 +91,9 @@ fix equil1 all print ${taxa_var} "${tiempo} ${strain_lxC} ${strain_lyC} ${strain
 
 dump 2 all custom ${taxa_var} folha.lammpstrj   id  type  x y z v_hydro v_vonmises v_stress1 v_stress2 v_stress3 v_stress4 v_stress5 v_stress6 
 
-fix 2 all deform 1 x erate ${velocidade} remap x     # Comando que manda deformar a caixa periódica, define o puxamento
-restart         2000  restart1   restart2            # Comando que gera arquivos para reiniciar a simulação. Gerando arquivos diferentes da parte de equilibração
-run ${run_var}                                       # Rodando o teste de stress-strain
+fix 2 all deform 1 x erate ${velocidade} remap x     
+restart         2000  restart1   restart2            
+run ${run_var}                                       
 
 
 
