@@ -1,5 +1,6 @@
 
 #Parâmetros gerais da simulação
+
 units		real                       
 atom_style	charge                      
 boundary        p p p  
