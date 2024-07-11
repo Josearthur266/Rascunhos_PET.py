@@ -1,8 +1,11 @@
+
+#Parâmetros gerais da simulação
+
 units		real                       
 atom_style	charge                      
 boundary        p p p  
 
-read_data       trib.full            
+read_data       data.grafeno            
 pair_style       reaxff NULL
 pair_coeff      * * ffield.reax C
 fix             Reax all qeq/reaxff 1 0.0 10.0 1.0e-6 reaxff 
@@ -14,9 +17,9 @@ variable       tiempo equal step
     
 fix             7 all balance 2000 1.1 shift z 10 1.1
 
-variable        velocidade equal 1e-6                            # Velocidade da puxada
-variable        timestep_var equal 0.1                            # timestep da simulação
-variable        temperature equal 10                             # temperatura do sistema
+variable        velocidade equal 1e-6                            
+variable        timestep_var equal 0.1                            
+variable        temperature equal 10                             
 variable        termalizar_var          equal 200000             
 variable        termalizar_var_npt      equal 200000             
 variable        taxa_termalizar_var     equal 200                
@@ -28,6 +31,8 @@ timestep        ${timestep_var}
 variable        dampingTemp_var  equal  100*${timestep_var}        
 variable        dampingPress_var equal 1000*${timestep_var}   
 
+#Cálculo do stress
+
 variable        cfac equal 1.01325e-4                             
 compute         stress all stress/atom NULL                        
 variable        stress1 atom  ${cfac}*c_stress[1]                  
@@ -36,9 +41,6 @@ variable        stress3 atom  ${cfac}*c_stress[3]
 variable        stress4 atom  ${cfac}*c_stress[4]
 variable        stress5 atom  ${cfac}*c_stress[5]
 variable        stress6 atom  ${cfac}*c_stress[6]
-variable        hydro   atom  (v_stress1+v_stress2+v_stress3)/3.0 
-variable        vonmises2 atom (v_stress1-v_stress2)^2+(v_stress2-v_stress3)^2+(v_stress1-v_stress3)^2+6*(v_stress4^2+v_stress5^2+v_stress6^2)
-variable        vonmises atom sqrt(0.5*v_vonmises2)
 
 variable        p1  equal -pxx*${cfac}
 variable        p2  equal -pyy*${cfac}
@@ -46,9 +48,8 @@ variable        p3  equal -pzz*${cfac}
 variable        p12 equal -pxy*${cfac}
 variable        p13 equal -pxz*${cfac}
 variable        p23 equal -pyz*${cfac}
-variable fm equal "(v_p1+v_p2+v_p3)/3"                                                                 
-variable fv equal "sqrt(((v_p1-v_p2)^2+(v_p2-v_p3)^2+(v_p3-v_p1)^2+6*(v_p12^2+v_p13^2+v_p23^2))/2)"    
-variable fd equal (((v_p1-v_fm)*(v_p2-v_fm)*(v_p3-v_fm))-v_p12^2*(v_p3-v_fm)-v_p13^2*(v_p2-v_fm)-v_p23^2*(v_p1-v_fm)+2*v_p12*v_p23*v_p13) 
+
+#Primeira termalização
 
 fix             99 all box/relax aniso 0.0 dilate partial
 minimize        1.0e-10 1.0e-8 1000 200000
@@ -63,11 +64,15 @@ run             ${termalizar_var_npt}
 undump 2                
 unfix 1                                                                 
 
+#Segunda termalização
+
 fix             1 all nph y 0.0 0.0 ${dampingPress_var}                                              
 dump            2 all custom 2000 f_npt2.lammpstrj id type  x y z              
 
 run             ${termalizar_var}                                       
 undump          2                                                       
+
+#Cálculo da deformação
 
 variable alx0_Ic equal lx
 variable aly0_Ic equal ly
@@ -84,17 +89,15 @@ variable strain_lxC equal (lx-${lx0_Ic})/${lx0_Ic}
 variable strain_lyC equal (ly-${ly0_Ic})/${ly0_Ic}
 variable strain_lzC equal (lz-${lz0_Ic})/${lz0_Ic}
 
+#Deformando a caixa
+
 variable run_var equal 0.3/(${timestep_var}*${velocidade})  
 variable taxa_var equal v_run_var/1000                      # Define o intervalo para imprimir os outputs do puxamento
  
-fix equil1 all print ${taxa_var} "${tiempo} ${strain_lxC} ${strain_lyC} ${strain_lzC} ${p1} ${p2} ${p3} ${p12} ${p13} ${p23} ${fv} ${fm} ${fd} ${lxC} ${lyC} ${lzC} " file data.dat screen no
+fix equil1 all print ${taxa_var} ${tiempo} ${strain_lxC} ${strain_lyC} ${strain_lzC} ${p1} ${p2} ${p3} ${p12} ${p13} ${p23} ${lxC} ${lyC} ${lzC} file data.dat screen no
 
-dump 2 all custom ${taxa_var} folha.lammpstrj   id  type  x y z v_hydro v_vonmises v_stress1 v_stress2 v_stress3 v_stress4 v_stress5 v_stress6 
+dump 2 all custom ${taxa_var} folha.lammpstrj   id  type  x y z 
 
 fix 2 all deform 1 x erate ${velocidade} remap x     
 restart         2000  restart1   restart2            
-run ${run_var}                                       
-
-
-
-
+run ${run_var}
