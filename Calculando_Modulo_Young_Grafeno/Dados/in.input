@@ -27,14 +27,7 @@ timestep        ${timestep_var}
 variable        dampingTemp_var  equal  100*${timestep_var}        
 variable        dampingPress_var equal 1000*${timestep_var}    
 
-variable        cfac equal 1.0e-4                              
-compute         stress all stress/atom NULL                        
-variable        stress1 atom  ${cfac}*c_stress[1]                  
-variable        stress2 atom  ${cfac}*c_stress[2]
-variable        stress3 atom  ${cfac}*c_stress[3]
-variable        stress4 atom  ${cfac}*c_stress[4]
-variable        stress5 atom  ${cfac}*c_stress[5]
-variable        stress6 atom  ${cfac}*c_stress[6]
+variable        cfac equal 1.0e-4                     
 
 variable        p1  equal -pxx*${cfac}
 variable        p2  equal -pyy*${cfac}

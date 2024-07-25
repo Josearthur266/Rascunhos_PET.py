@@ -9,7 +9,7 @@ Reading data file ...
   4 by 4 by 2 MPI processor grid
   reading atoms ...
   1968 atoms
-  read_data CPU = 0.011 seconds
+  read_data CPU = 0.009 seconds
 pair_style airebo 3.0
 pair_coeff      * * CHrcc2.airebo C
 Reading airebo potential file CHrcc2.airebo with DATE: 2011-10-25
@@ -40,19 +40,6 @@ variable        dampingPress_var equal 1000*${timestep_var}
 variable        dampingPress_var equal 1000*0.0001
 
 variable        cfac equal 1.0e-4
-compute         stress all stress/atom NULL
-variable        stress1 atom  ${cfac}*c_stress[1]
-variable        stress1 atom  0.0001*c_stress[1]
-variable        stress2 atom  ${cfac}*c_stress[2]
-variable        stress2 atom  0.0001*c_stress[2]
-variable        stress3 atom  ${cfac}*c_stress[3]
-variable        stress3 atom  0.0001*c_stress[3]
-variable        stress4 atom  ${cfac}*c_stress[4]
-variable        stress4 atom  0.0001*c_stress[4]
-variable        stress5 atom  ${cfac}*c_stress[5]
-variable        stress5 atom  0.0001*c_stress[5]
-variable        stress6 atom  ${cfac}*c_stress[6]
-variable        stress6 atom  0.0001*c_stress[6]
 
 variable        p1  equal -pxx*${cfac}
 variable        p1  equal -pxx*0.0001
@@ -84,7 +71,7 @@ Neighbor list info ...
       bin: standard
 WARNING: Energy due to 3 extra global DOFs will be included in minimizer energies
  (../min.cpp:219)
-Per MPI rank memory allocation (min/avg/max) = 8.168 | 8.232 | 8.295 Mbytes
+Per MPI rank memory allocation (min/avg/max) = 8.143 | 8.204 | 8.265 Mbytes
    Step           Lx             Ly             Lz            Pxx            Pyy            Pzz           KinEng         PotEng         Press           Temp     
          0   101.3          51.299999      40            -16153.847     -16848.171      0              0             -14490.354     -11000.673      0            
        200   99.647314      50.407243      40             13.860585      13.494064      0              0             -14528.706      9.1182164      0            
@@ -92,9 +79,9 @@ Per MPI rank memory allocation (min/avg/max) = 8.168 | 8.232 | 8.295 Mbytes
        600   99.535625      50.339558      40            -42.922001     -43.065532      0              0             -14554.022     -28.662511      0            
        800   99.490108      50.319131      40             75.628878      76.314139      0              0             -14560.615      50.647672      0            
       1000   99.456326      50.309235      40             69.429699      70.265801      0              0             -14566.416      46.565167      0            
-Loop time of 1.30556 on 32 procs for 1000 steps with 1968 atoms
+Loop time of 1.60704 on 32 procs for 1000 steps with 1968 atoms
 
-99.4% CPU use with 32 MPI tasks x no OpenMP threads
+99.5% CPU use with 32 MPI tasks x no OpenMP threads
 
 Minimization stats:
   Stopping criterion = max iterations
@@ -108,12 +95,12 @@ Minimization stats:
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 0.039548   | 0.52819    | 1.1407     |  66.9 | 40.46
-Neigh   | 0.0016995  | 0.0021795  | 0.0028088  |   0.7 |  0.17
-Comm    | 0.019631   | 0.1225     | 0.35176    |  25.9 |  9.38
-Output  | 0.00021146 | 0.00023098 | 0.00025056 |   0.0 |  0.02
+Pair    | 0.039363   | 0.51439    | 1.4807     |  68.5 | 32.01
+Neigh   | 0.0016993  | 0.0020382  | 0.0031145  |   0.8 |  0.13
+Comm    | 0.028316   | 0.26776    | 0.68096    |  53.2 | 16.66
+Output  | 0.00035633 | 0.00036381 | 0.00039023 |   0.0 |  0.02
 Modify  | 0          | 0          | 0          |   0.0 |  0.00
-Other   |            | 0.6525     |            |       | 49.98
+Other   |            | 0.8225     |            |       | 51.18
 
 Nlocal:           61.5 ave         126 max           0 min
 Histogram: 16 0 0 0 0 0 0 0 0 16
@@ -142,7 +129,7 @@ fix             1 all npt temp 10 10 0.01 x 0.0 0.0 0.1 y 0.0 0.0 ${dampingPress
 fix             1 all npt temp 10 10 0.01 x 0.0 0.0 0.1 y 0.0 0.0 0.1
 run             ${termalizar_var_npt}
 run             200000
-Per MPI rank memory allocation (min/avg/max) = 7.168 | 7.169 | 7.17 Mbytes
+Per MPI rank memory allocation (min/avg/max) = 7.176 | 7.177 | 7.179 Mbytes
    Step           Lx             Ly             Lz            Pxx            Pyy            Pzz           KinEng         PotEng         Press           Temp     
       1000   99.456326      50.309235      40             82.706915      83.497349      14.198249      2.5425471     -14566.416      60.134171      10           
       1200   99.297802      50.279551      40             81.030997      89.209934     -5.1716455      12.224496     -14595.684      55.023095      48.079723    
@@ -1145,20 +1132,20 @@ Per MPI rank memory allocation (min/avg/max) = 7.168 | 7.169 | 7.17 Mbytes
     200600   99.134579      50.263277      40             66.908058      73.616369     -1.4682557      2.5885474     -14612.778      46.352057      10.180922    
     200800   99.136862      50.26302       40             75.588421      80.336031     -2.0496574      2.5459105     -14612.943      51.291598      10.013229    
     201000   99.137453      50.264355      40             82.571142      85.063143     -0.2280538      2.6546656     -14613.229      55.802077      10.44097     
-Loop time of 168.233 on 32 procs for 200000 steps with 1968 atoms
+Loop time of 189.323 on 32 procs for 200000 steps with 1968 atoms
 
-Performance: 10.271 ns/day, 2.337 hours/ns, 1188.824 timesteps/s, 2.340 Matom-step/s
-99.5% CPU use with 32 MPI tasks x no OpenMP threads
+Performance: 9.127 ns/day, 2.629 hours/ns, 1056.396 timesteps/s, 2.079 Matom-step/s
+99.6% CPU use with 32 MPI tasks x no OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 95.419     | 114.9      | 125.96     |  64.4 | 68.30
-Neigh   | 0.10991    | 0.12358    | 0.12952    |   1.5 |  0.07
-Comm    | 27.16      | 40.059     | 60.799     | 115.7 | 23.81
-Output  | 0.29033    | 0.29238    | 0.29492    |   0.2 |  0.17
-Modify  | 9.9418     | 11.666     | 14.091     |  35.7 |  6.93
-Other   |            | 1.195      |            |       |  0.71
+Pair    | 96.418     | 108.19     | 172.32     | 139.3 | 57.14
+Neigh   | 0.10975    | 0.11429    | 0.16607    |   4.0 |  0.06
+Comm    | 9.1176     | 60.957     | 85.06      | 275.7 | 32.20
+Output  | 0.26166    | 0.26258    | 0.26852    |   0.2 |  0.14
+Modify  | 4.4399     | 19.025     | 53.079     | 374.3 | 10.05
+Other   |            | 0.7785     |            |       |  0.41
 
 Nlocal:           61.5 ave          78 max          44 min
 Histogram: 1 4 3 4 5 4 1 3 3 4
@@ -1183,7 +1170,7 @@ dump            2 all custom 2000 f_npt2.lammpstrj id type  x y z
 
 run             ${termalizar_var}
 run             200000
-Per MPI rank memory allocation (min/avg/max) = 7.168 | 7.169 | 7.17 Mbytes
+Per MPI rank memory allocation (min/avg/max) = 7.176 | 7.177 | 7.179 Mbytes
    Step           Lx             Ly             Lz            Pxx            Pyy            Pzz           KinEng         PotEng         Press           Temp     
     201000   99.137453      50.264355      40             82.571142      85.063143     -0.2280538      2.6546656     -14613.229      55.802077      10.44097     
     201200   99.137453      50.273613      40             78.812908     -58.927563      2.1883934      2.6933337     -14613.268      7.3579128      10.593053    
@@ -2186,20 +2173,20 @@ Per MPI rank memory allocation (min/avg/max) = 7.168 | 7.169 | 7.17 Mbytes
     400600   99.137453      50.271646      40             45.991673     -8.182725       0.23551407     2.4847424     -14613.059      12.681487      9.7726506    
     400800   99.137453      50.268463      40             21.244508      23.748478     -1.2251368      2.4585493     -14613.033      14.589283      9.6696313    
     401000   99.137453      50.269869      40            -2.9494548     -29.992527     -3.0980035      2.3364785     -14612.911     -12.013328      9.189519     
-Loop time of 175.144 on 32 procs for 200000 steps with 1968 atoms
+Loop time of 184.24 on 32 procs for 200000 steps with 1968 atoms
 
-Performance: 9.866 ns/day, 2.433 hours/ns, 1141.920 timesteps/s, 2.247 Matom-step/s
-99.5% CPU use with 32 MPI tasks x no OpenMP threads
+Performance: 9.379 ns/day, 2.559 hours/ns, 1085.539 timesteps/s, 2.136 Matom-step/s
+99.6% CPU use with 32 MPI tasks x no OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 98.121     | 115.31     | 133.75     |  83.1 | 65.84
-Neigh   | 0.10969    | 0.12295    | 0.12903    |   1.5 |  0.07
-Comm    | 28.306     | 46.65      | 65.633     | 136.0 | 26.64
-Output  | 0.28365    | 0.28581    | 0.28842    |   0.2 |  0.16
-Modify  | 8.8849     | 11.577     | 15.099     |  42.0 |  6.61
-Other   |            | 1.198      |            |       |  0.68
+Pair    | 92.545     | 108.02     | 165.75     | 138.3 | 58.63
+Neigh   | 0.10891    | 0.11389    | 0.16483    |   3.9 |  0.06
+Comm    | 9.9288     | 59.636     | 79.846     | 240.7 | 32.37
+Output  | 0.25694    | 0.25791    | 0.26379    |   0.2 |  0.14
+Modify  | 3.7322     | 15.434     | 41.796     | 309.5 |  8.38
+Other   |            | 0.7735     |            |       |  0.42
 
 Nlocal:           61.5 ave          75 max          49 min
 Histogram: 4 3 3 3 3 3 5 2 4 2
@@ -2257,7 +2244,7 @@ fix 2 all deform 1 x erate 0.001 remap x
 restart         2000  restart1   restart2
 run ${run_var}
 run 3000000
-Per MPI rank memory allocation (min/avg/max) = 7.168 | 7.169 | 7.17 Mbytes
+Per MPI rank memory allocation (min/avg/max) = 7.176 | 7.177 | 7.179 Mbytes
    Step           Lx             Ly             Lz            Pxx            Pyy            Pzz           KinEng         PotEng         Press           Temp     
     401000   99.137453      50.269869      40            -2.9494548     -29.992527     -3.0980035      2.3364785     -14612.911     -12.013328      9.189519     
     401200   99.139435      50.266072      40            -17.832856      14.201448     -3.3348714      2.3135343     -14612.888     -2.322093       9.0992784    
@@ -17260,20 +17247,20 @@ Per MPI rank memory allocation (min/avg/max) = 7.168 | 7.169 | 7.17 Mbytes
    3400600   128.87472      48343392       40             0.024992305   -8.1223404e-05  0.040279019    5500.1756     -3872.3778      0.021730034    21632.542    
    3400800   128.87671      48002346       40             0.025096982   -9.7870702e-05  0.040073501    5502.296      -3874.6262      0.021690871    21640.882    
    3401000   128.87869      47805413       40             0.02619087    -4.2464314e-06  0.040661895    5509.0988     -3881.5519      0.022282839    21667.638    
-Loop time of 73024.2 on 32 procs for 3000000 steps with 1968 atoms
+Loop time of 73256.3 on 32 procs for 3000000 steps with 1968 atoms
 
-Performance: 0.355 ns/day, 67.615 hours/ns, 41.082 timesteps/s, 80.850 katom-step/s
-94.2% CPU use with 32 MPI tasks x no OpenMP threads
+Performance: 0.354 ns/day, 67.830 hours/ns, 40.952 timesteps/s, 80.594 katom-step/s
+92.4% CPU use with 32 MPI tasks x no OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 1226.7     | 1421.6     | 1492.6     | 179.7 |  1.95
-Neigh   | 17395      | 55426      | 70566      |7558.9 | 75.90
-Comm    | 713.34     | 15823      | 54098      |14181.6 | 21.67
-Output  | 7.4109     | 7.4915     | 7.6084     |   1.6 |  0.01
-Modify  | 191.91     | 322.22     | 1133.7     |1190.9 |  0.44
-Other   |            | 23.48      |            |       |  0.03
+Pair    | 1235.4     | 1329.8     | 2033.7     | 475.2 |  1.82
+Neigh   | 69304      | 70081      | 70576      | 160.0 | 95.67
+Comm    | 456.16     | 1403.6     | 2363.6     |1156.3 |  1.92
+Output  | 5.7037     | 5.7475     | 5.8802     |   1.3 |  0.01
+Modify  | 89.204     | 419.98     | 1122.5     |1415.9 |  0.57
+Other   |            | 16.56      |            |       |  0.02
 
 Nlocal:           61.5 ave          82 max          41 min
 Histogram: 2 1 6 4 2 6 3 4 2 2
@@ -17292,4 +17279,4 @@ Dangerous builds = 346552
 
 
 
-Total wall time: 20:22:48
+Total wall time: 20:27:11
